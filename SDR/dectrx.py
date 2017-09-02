@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Dectrx
-# Generated: Sun Mar  5 10:51:18 2017
+# Generated: Sat Sep  2 18:13:22 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -30,7 +30,6 @@ from gnuradio.wxgui import waterfallsink2
 from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
 import osmosdr
-import time
 import wx
 
 
@@ -38,8 +37,6 @@ class dectrx(grc_wxgui.top_block_gui):
 
     def __init__(self):
         grc_wxgui.top_block_gui.__init__(self, title="Dectrx")
-        _icon_path = "/usr/share/icons/hicolor/32x32/apps/gnuradio-grc.png"
-        self.SetIcon(wx.Icon(_icon_path, wx.BITMAP_TYPE_ANY))
 
         ##################################################
         # Variables
@@ -49,7 +46,7 @@ class dectrx(grc_wxgui.top_block_gui):
         self.rf_gain = rf_gain = 10
         self.ppm = ppm = 0
         self.if_gain = if_gain = 20
-        self.freq = freq = 1897.344e6-(channel*1.728e6)
+        self.freq = freq = (1897.344e6 - channel*1.728e6) if channel < 10 else (1881.792e6 + channel * 1.728e6)
         self.dect_rate = dect_rate = 1.152e6
         self.bb_gain = bb_gain = 20
 
